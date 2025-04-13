@@ -1,7 +1,8 @@
 # Phishing Detection Chrome Extension using Machine Learning
 This project is a browser-based phishing detection system implemented as a Chrome Extension that leverages machine learning models to identify and block phishing websites in real-time. It is part of a research initiative focused on enhancing web security through intelligent URL and content-based analysis.
 
-🚀 Features
+#🚀 Features
+
   🔍 Real-time detection of phishing URLs while browsing
 
   🧠 Backend powered by an optimized XGBoost machine learning model with 98.5% accuracy
