@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  width: 320px;
+  background-color: #f9f9f9;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.safe {
+  color: green;
+  font-weight: bold;
+}
+.phishing {
+  color: red;
+  font-weight: bold;
+}
+.error {
+  color: darkorange;
+  font-weight: bold;
+}
+.history-entry {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
