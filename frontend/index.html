@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield - Advanced Phishing Detection</title>
+    <meta name="description" content="Protect yourself from phishing attacks with AI-powered URL detection. Free, fast, and reliable phishing detection service.">
+    
+    <!-- External CSS dependencies -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="icon" type="image/png" href="image/icon48.png">
+    <!-- Notification library for user feedback -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+</head>
+<body>
+    <!-- Announcement banner for new features/updates -->
+    <div class="announcement-banner">
+        <div class="announcement-content">
+            <i class="fas fa-bullhorn"></i>
+            <span>New: PhishShield now detects AI-generated phishing URLs! 🚀</span>
+            <button class="close-banner"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Main navigation bar with logo and menu items -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>PhishShield</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#statistics">Statistics</a>
+                <a href="research.html">Research</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Interactive particles background for visual appeal -->
+        <div id="particles-js"></div>
+        
+        <!-- Hero section with main URL input functionality -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Protect Yourself from Phishing Attacks</h1>
+                <p class="hero-subtitle">Advanced AI-powered URL detection to keep you safe online</p>
+                
+                <!-- URL input form with search functionality -->
+                <div class="search-container">
+                    <div class="input-wrapper">
+                        <i class="fas fa-link input-icon"></i>
+                        <input type="text" id="urlInput" placeholder="Enter any URL to check for phishing...">
+                    </div>
+                    <button id="checkButton">
+                        <i class="fas fa-shield-alt"></i>
+                        Check URL
+                    </button>
+                </div>
+
+                <!-- Trust indicators to build user confidence -->
+                <div class="trust-badges">
+                    <div class="badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>99.9% Uptime</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-lock"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-users"></i>
+                        <span>10K+ Users</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading indicator for URL analysis -->
+            <div id="loadingIndicator" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing URL...</p>
+            </div>
+
+            <!-- Error message container -->
+            <div id="errorContainer" class="hidden">
+                <div class="error-message"></div>
+            </div>
+
+            <!-- Results display container -->
+            <div id="resultContainer" class="hidden">
+                <div class="result-card">
+                    <div id="statusIcon"></div>
+                    <h2 id="resultTitle"></h2>
+                    <p id="resultDescription"></p>
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="scanTime"></span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-server"></i>
+                            <span>AI Model v2.1</span>
+                        </div>
+                    </div>
+                    <div class="result-footer">
+                        <button class="share-btn" id="shareResult">
+                            <i class="fas fa-share-alt"></i>
+                            Share Result
+                        </button>
+                        <button class="report-btn" id="reportButton">
+                            <i class="fas fa-flag"></i>
+                            Report URL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics section showing real-time protection metrics -->
+        <section id="statistics" class="stats-section">
+            <h2>Real-time Protection Statistics</h2>
+            <div class="stats-container">
+                <div class="stat-card" data-aos="fade-up">
+                    <div class="stat-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-counter">
+                            <span class="stat-number" id="totalScans">0</span>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Total Scans</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-counter">
+                            <span class="stat-number" id="safeUrls">0</span>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Safe URLs</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-counter">
+                            <span class="stat-number" id="phishingUrls">0</span>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Threats Blocked</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features section highlighting key product benefits -->
+        <section id="features" class="features-section">
+            <h2>Why Choose PhishShield?</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Detection</h3>
+                    <p>Advanced machine learning algorithms trained on millions of URLs for accurate phishing detection.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-time Analysis</h3>
+                    <p>Get instant results with our high-performance scanning engine.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Privacy First</h3>
+                    <p>We don't store personal data or share your scanning history with third parties.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Scan History</h3>
+                    <p>Keep track of your recent scans and maintain a record of checked URLs.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent scans history section -->
+        <div id="historyContainer" class="history-container hidden">
+            <div class="history-header">
+                <div class="history-title">
+                    <h2>Recent Scans</h2>
+                    <span class="history-badge">Last 10 scans</span>
+                </div>
+                <button id="clearHistory" class="clear-btn">
+                    <i class="fas fa-trash"></i>
+                    Clear History
+                </button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </div>
+
+        <!-- How it works section with visual timeline -->
+        <section id="how-it-works" class="how-it-works-section">
+            <h2>How PhishShield Works</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Enter URL</h3>
+                        <p>Simply paste any suspicious URL you want to check.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Analysis</h3>
+                        <p>Our AI model analyzes multiple features of the URL.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Get Results</h3>
+                        <p>Receive instant feedback on the safety of the URL.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ section with expandable accordion -->
+        <section id="faq" class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>How accurate is PhishShield?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI model achieves over 98.59% accuracy in detecting phishing URLs, trained on millions of verified samples.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Is it free to use?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, PhishShield offers a free plan with up to 100 URL scans per month. For unlimited scans and advanced features, check our Pro plan.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>How do I report a false positive?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Use the "Report URL" button to submit any incorrectly classified URLs for review. Our team will investigate and update our AI model accordingly.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>What happens to the URLs I check?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We only store the URL and scan result temporarily for history features. No personal data is collected or shared with third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call-to-action section for user conversion -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Protect Yourself?</h2>
+                <p>Join thousands of users who trust PhishShield for their online safety</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn primary">Get Started Free</button>
+                    <button class="cta-btn secondary">Contact Sales</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer section with site navigation and legal links -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>PhishShield</h3>
+                    </div>
+                    <p>Protecting users from phishing attacks with advanced AI technology.</p>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="#features">Features</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#">API</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PhishShield. All rights reserved.</p>
+                <div class="footer-badges">
+                    <img src="https://img.shields.io/badge/SSL-Secured-green" alt="SSL Secured">
+                    <img src="https://img.shields.io/badge/GDPR-Compliant-blue" alt="GDPR Compliant">
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- External JavaScript dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Screenshot overlay for sharing results -->
+    <div class="screenshot-overlay" id="screenshotOverlay">
+        <div class="screenshot-content">
+            <button class="close-screenshot" id="closeScreenshot">×</button>
+            <img id="resultScreenshot" alt="Scan Result">
+            <div class="screenshot-actions">
+                <button class="share-btn" id="downloadScreenshot">
+                    <i class="fas fa-download"></i>
+                    Download
+                </button>
+                <button class="share-btn" id="shareScreenshot">
+                    <i class="fas fa-share-alt"></i>
+                    Share
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
