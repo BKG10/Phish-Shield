@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phishing Detector</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .history-entry {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 4px;
+      background: #f5f5f5;
+    }
+    .history-entry.phishing {
+      border-left: 4px solid #ff4444;
+    }
+    .history-entry.safe {
+      border-left: 4px solid #4CAF50;
+    }
+    .history-entry .url {
+      color: #666;
+      font-size: 12px;
+      word-break: break-all;
+    }
+    .history-entry .time {
+      color: #999;
+      font-size: 11px;
+    }
+    .report-link {
+      color: #ff4444;
+      text-decoration: none;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+    .report-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h3>🔎 Phishing URL Checker</h3>
+  <div id="currentStatus">
+    <div id="loading" style="display:none; margin-top: 10px;">⏳ Scanning...</div>
+    <div id="result" style="margin-top: 10px;"></div>
+  </div>
+
+  <hr>
+  <h4>📜 Recent Scans</h4>
+  <div id="history"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
